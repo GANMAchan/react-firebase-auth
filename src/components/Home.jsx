@@ -1,5 +1,5 @@
 import { auth } from '../firebase'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 
 const Home = () => {
     const navigate = useNavigate()

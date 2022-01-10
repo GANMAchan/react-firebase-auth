@@ -3,6 +3,7 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import { AuthProvider } from './context/AuthContext'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
     return (
@@ -10,7 +11,15 @@ function App() {
             <div style={{ margin: '2em' }}></div>
             <BrowserRouter>
                 <Routes>
-                    <Route element={<Home />} path='/' component={Home} />
+                    <Route
+                        element={
+                            <PrivateRoute>
+                                <Home />
+                            </PrivateRoute>
+                        }
+                        path='/'
+                        component={Home}
+                    />
                     <Route
                         element={<SignUp />}
                         path='/signup'

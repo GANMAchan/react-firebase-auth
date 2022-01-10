@@ -7,7 +7,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const handleSubmit = (event) => {
         event.preventDefault()
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
     }
     const handleChangeEmail = (event) => {
         setEmail(event.currentTarget.value)
