@@ -9,18 +9,16 @@ const Home = () => {
         navigate('/login')
     }
     const { user } = useAuthContext()
-    console.log(user)
 
     if (!user) {
         return <Navigate to='/login' />
-    } else {
-        return (
-            <div>
-                <h1>ホームページ</h1>
-                <button onClick={handleLogout}>ログアウト</button>
-            </div>
-        )
     }
+    return (
+        <div>
+            <h1>ホームページ</h1>
+            <button onClick={handleLogout}>ログアウト</button>
+        </div>
+    )
 }
 
 export default Home

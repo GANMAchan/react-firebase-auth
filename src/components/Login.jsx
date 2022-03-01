@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { auth } from '../firebase'
 import { Link } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
+import { useAuthContext } from '../context/AuthContext'
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -15,7 +17,13 @@ const Login = () => {
     const handleChangePassword = (event) => {
         setPassword(event.currentTarget.value)
     }
+    const navigate = useNavigate()
+    const { user } = useAuthContext()
 
+    // ログインしている場合はルートにリダイレクト
+    if (user) {
+        return <Navigate to='/' />
+    }
     return (
         <div>
             <h1>ログイン</h1>
