@@ -7,9 +7,15 @@ import { useAuthContext } from '../context/AuthContext'
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const handleSubmit = (event) => {
+    const [error, setError] = useState('')
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        auth.signInWithEmailAndPassword(email, password)
+        try {
+            await auth.signInWithEmailAndPassword(email, password)
+        } catch (error) {
+            console.log('エラーだよ')
+            setError(error.message)
+        }
     }
     const handleChangeEmail = (event) => {
         setEmail(event.currentTarget.value)
@@ -27,6 +33,7 @@ const Login = () => {
     return (
         <div>
             <h1>ログイン</h1>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>メールアドレス</label>
